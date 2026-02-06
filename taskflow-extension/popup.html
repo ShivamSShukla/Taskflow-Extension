@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1>✨ TaskFlow</h1>
+      <p class="subtitle">Your Productivity Companion</p>
+    </header>
+
+    <!-- Tab Navigation -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="tasks">
+        <span class="tab-icon">📝</span>
+        Tasks
+      </button>
+      <button class="tab-btn" data-tab="bored">
+        <span class="tab-icon">🎯</span>
+        Take a Break
+      </button>
+      <button class="tab-btn" data-tab="stats">
+        <span class="tab-icon">📊</span>
+        Stats
+      </button>
+    </div>
+
+    <!-- Tasks Tab Content -->
+    <div id="tasks-content" class="tab-content active">
+      <div class="section">
+        <h2>Your Tasks</h2>
+        <div class="task-input-group">
+          <input 
+            type="text" 
+            id="task-title" 
+            placeholder="What needs to be done?"
+            class="input"
+          />
+          <button id="add-task-btn" class="btn btn-primary">
+            <span>+</span> Add Task
+          </button>
+        </div>
+        
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="active">Active</button>
+          <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+
+        <div id="tasks-list" class="tasks-list"></div>
+        
+        <button id="load-sample-tasks" class="btn btn-secondary">
+          📥 Load Sample Tasks (JSONPlaceholder)
+        </button>
+      </div>
+    </div>
+
+    <!-- Bored Tab Content -->
+    <div id="bored-content" class="tab-content">
+      <div class="section">
+        <h2>Need a Break?</h2>
+        <p class="description">Get a random activity suggestion to refresh your mind!</p>
+        
+        <div id="activity-card" class="activity-card hidden">
+          <div class="activity-header">
+            <span class="activity-type"></span>
+            <span class="activity-participants"></span>
+          </div>
+          <h3 class="activity-title"></h3>
+          <div class="activity-details">
+            <div class="detail-item">
+              <span class="label">Accessibility:</span>
+              <div class="progress-bar">
+                <div class="progress-fill" data-type="accessibility"></div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <span class="label">Price:</span>
+              <div class="progress-bar">
+                <div class="progress-fill" data-type="price"></div>
+              </div>
+            </div>
+          </div>
+          <a class="activity-link" href="#" target="_blank" rel="noopener noreferrer">
+            Learn more →
+          </a>
+        </div>
+
+        <div class="activity-filters">
+          <select id="activity-type" class="select">
+            <option value="">Any Type</option>
+            <option value="education">Education</option>
+            <option value="recreational">Recreational</option>
+            <option value="social">Social</option>
+            <option value="diy">DIY</option>
+            <option value="charity">Charity</option>
+            <option value="cooking">Cooking</option>
+            <option value="relaxation">Relaxation</option>
+            <option value="music">Music</option>
+            <option value="busywork">Busywork</option>
+          </select>
+          
+          <select id="activity-participants" class="select">
+            <option value="">Any Participants</option>
+            <option value="1">Solo</option>
+            <option value="2">Pair</option>
+            <option value="3">Small Group (3)</option>
+            <option value="4">Group (4+)</option>
+          </select>
+        </div>
+
+        <button id="get-activity-btn" class="btn btn-primary btn-large">
+          🎲 Get Activity Suggestion
+        </button>
+        
+        <div id="activity-history" class="activity-history">
+          <h3>Recent Activities</h3>
+          <div id="history-list" class="history-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Tab Content -->
+    <div id="stats-content" class="tab-content">
+      <div class="section">
+        <h2>Your Statistics</h2>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="total-tasks">0</div>
+            <div class="stat-label">Total Tasks</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="completed-tasks">0</div>
+            <div class="stat-label">Completed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="active-tasks">0</div>
+            <div class="stat-label">Active</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="activities-tried">0</div>
+            <div class="stat-label">Activities Tried</div>
+          </div>
+        </div>
+
+        <div class="completion-rate">
+          <h3>Completion Rate</h3>
+          <div class="progress-bar large">
+            <div id="completion-progress" class="progress-fill"></div>
+          </div>
+          <p class="completion-text" id="completion-text">0% Complete</p>
+        </div>
+
+        <button id="reset-stats" class="btn btn-danger">
+          🗑️ Clear All Data
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
